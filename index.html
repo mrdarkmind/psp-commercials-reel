@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>PSP Commercial Reel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: green brand band with the screening player, then a grid of spots grouped by campaign. */
+:root {
+  --brand: #00ae42;      /* PSP green */
+  --brand-deep: #00591c;
+  --sun: #f5c000;        /* PSP yellow accent */
+  --bg: #f6f8f5;
+  --surface: #ffffff;
+  --fg: #132016;
+  --muted: #55665a;
+  --line: #dbe3dc;
+  --on-brand: #ffffff;
+  --display: "Archivo", "Arial Black", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c140f; --surface: #142019; --fg: #e8f1ea; --muted: #9bb0a1; --line: #24352a;
+    --brand-deep: #0b3d1c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c140f; --surface: #142019; --fg: #e8f1ea; --muted: #9bb0a1; --line: #24352a;
+  --brand-deep: #0b3d1c; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.5; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+.band { background: var(--brand); color: var(--on-brand); margin-top: calc(-1 * env(safe-area-inset-top, 0px)); padding-top: env(safe-area-inset-top, 0px); }
+.band .wrap { padding-block: 28px 32px; display: grid; gap: 20px; }
+.mast { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+.eyebrow { font: 700 13px/1 var(--display); letter-spacing: .12em; text-transform: uppercase; opacity: .9; }
+h1 { font: 900 clamp(30px, 5vw, 48px)/1 var(--display); margin: 6px 0 0; text-wrap: balance; letter-spacing: -.01em; }
+.mast p { margin: 0; max-width: 46ch; font-size: 15px; opacity: .92; }
+
+.stage { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: start; }
+.screen { position: relative; background: #000; border: 4px solid var(--on-brand); border-radius: 6px; overflow: hidden; aspect-ratio: 16 / 9; max-width: 100%; }
+.screen video { display: block; width: 100%; height: 100%; background: #000; }
+.now { display: grid; gap: 10px; min-width: 0; }
+.now .tag { justify-self: start; background: var(--sun); color: #111; font: 700 12px/1 var(--display); letter-spacing: .08em; text-transform: uppercase; padding: 7px 10px 6px; border-radius: 4px; }
+.now h2 { font: 900 26px/1.1 var(--display); margin: 0; text-wrap: balance; }
+.now .meta { font-size: 14px; opacity: .9; font-variant-numeric: tabular-nums; }
+.now .line { margin: 4px 0 0; padding: 12px 14px; background: rgba(0,0,0,.16); border-radius: 6px; font-size: 14px; }
+.now .line b { display: block; font: 700 11px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; color: var(--sun); }
+
+main .wrap { padding-block: 36px 56px; display: grid; gap: 40px; }
+.campaign { display: grid; gap: 16px; }
+.campaign header { display: grid; gap: 4px; border-bottom: 2px solid var(--line); padding-bottom: 12px; }
+.campaign h3 { font: 900 22px/1.15 var(--display); margin: 0; text-wrap: balance; }
+.campaign header p { margin: 0; color: var(--muted); font-size: 15px; max-width: 70ch; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.spot { all: unset; cursor: pointer; display: grid; gap: 10px; align-content: start; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 10px 14px; transition: border-color .15s, transform .15s; }
+.spot:hover { border-color: var(--brand); transform: translateY(-2px); }
+.spot:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+.spot[aria-current="true"] { border-color: var(--brand); box-shadow: 0 0 0 2px var(--brand); }
+.thumb { position: relative; aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden; background: #000; max-width: 100%; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb .len { position: absolute; right: 8px; bottom: 8px; background: rgba(0,0,0,.75); color: #fff; font: 600 12px/1 var(--body); padding: 5px 7px; border-radius: 4px; font-variant-numeric: tabular-nums; }
+.thumb .playing { position: absolute; left: 8px; top: 8px; background: var(--sun); color: #111; font: 700 11px/1 var(--display); letter-spacing: .08em; text-transform: uppercase; padding: 5px 7px; border-radius: 4px; }
+.spot h4 { margin: 0 4px; font: 700 17px/1.25 var(--display); }
+.spot p { margin: 0 4px; color: var(--muted); font-size: 14px; }
+.note { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 16px; }
+
+@media (max-width: 860px) {
+  .stage { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { .spot { transition: none; } .spot:hover { transform: none; } }
+</style>
+</head>
+<body>
+
+<div class="band">
+  <div class="wrap">
+    <div class="mast">
+      <div>
+        <div class="eyebrow">Pet Supplies Plus · Boise area</div>
+        <h1>Commercial Reel</h1>
+      </div>
+      <p>Timing and style mock-ups for upcoming spots. Pick a spot below to play it.</p>
+    </div>
+    <div class="stage">
+      <div class="screen"><video id="player" controls playsinline preload="metadata"></video></div>
+      <div class="now" aria-live="polite">
+        <span class="tag" id="now-tag">Now playing</span>
+        <h2 id="now-title"></h2>
+        <div class="meta" id="now-meta"></div>
+        <div id="now-summary"></div>
+        <div class="line" id="now-line"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main><div class="wrap" id="campaigns"></div></main>
+
+<script>
+/* ---- The reel. To add a video: publish the MP4 + a poster next to this page and add an entry here. ---- */
+const CAMPAIGNS = [
+  {
+    id: "garden-city-frozen",
+    title: "Garden City: premium frozen + free same-day delivery",
+    blurb: "Jess, our Store Team Leader, shows the super-premium raw and frozen brands neighbors usually only find at indie pet stores, then the free same-day delivery offer: $35+, up to 12 miles (most of Boise, Meridian and Eagle).",
+    spots: [
+      { id: "a", title: "A · Take a Walk With Me", length: "0:30", file: "videos/psp-gc-frozen-A.mp4", poster: "posters/psp-gc-frozen-A.jpg",
+        summary: "Walk-and-talk down the freezer aisle. Brand logos pop on the glass as Jess names them.",
+        jess: "Jess on camera ~18.6s",
+        line: "Hi neighbors, I'm Jess from Pet Supplies Plus Garden City. Come take a walk with me. Raw, frozen, freeze-dried: Tucker's, Answers, Smallbatch, Northwest Naturals, A Pup Above…" },
+      { id: "b", title: "B · Wait, You Carry That?", length: "0:30", file: "videos/psp-gc-frozen-B.mp4", poster: "posters/psp-gc-frozen-B.jpg",
+        summary: "A customer's double-take at the freezer. Jess answers and a wall of brand logos builds beside her.",
+        jess: "Jess on camera ~18.6s",
+        line: "We do! Tucker's, Answers, Smallbatch, Northwest Naturals, Raised Right: the super-premium stuff you'd usually hunt down at an independent pet store…" },
+      { id: "c", title: "C · Freezer to Front Door", length: "0:30", file: "videos/psp-gc-frozen-C.mp4", poster: "posters/psp-gc-frozen-C.jpg",
+        summary: "A dog waits at the front door while Jess packs the order. Pet-hero story that leads into the delivery map.",
+        jess: "Jess on camera ~15.8s",
+        line: "That's Biscuit. Biscuit eats Northwest Naturals: raw, super-premium, the kind of food you'd expect at an indie pet store…" }
+    ]
+  }
+];
+
+const player = document.getElementById("player");
+const all = CAMPAIGNS.flatMap(c => c.spots.map(s => ({ ...s, campaign: c })));
+const byId = Object.fromEntries(all.map(s => [s.id, s]));
+
+function el(tag, attrs = {}, kids = []) {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "text") n.textContent = v; else n.setAttribute(k, v);
+  }
+  for (const k of [].concat(kids)) n.append(k);
+  return n;
+}
+
+const root = document.getElementById("campaigns");
+for (const c of CAMPAIGNS) {
+  const grid = el("div", { class: "grid" });
+  for (const s of c.spots) {
+    const btn = el("button", { class: "spot", type: "button", "data-id": s.id, "aria-label": "Play " + s.title }, [
+      el("div", { class: "thumb" }, [
+        el("img", { src: s.poster, alt: "", loading: "lazy" }),
+        el("span", { class: "len", text: s.length })
+      ]),
+      el("h4", { text: s.title }),
+      el("p", { text: s.summary })
+    ]);
+    btn.addEventListener("click", () => { location.hash = s.id; select(s.id, true); window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); });
+    grid.append(btn);
+  }
+  root.append(el("section", { class: "campaign", id: "campaign-" + c.id }, [
+    el("header", {}, [el("h3", { text: c.title }), el("p", { text: c.blurb })]),
+    grid
+  ]));
+}
+root.append(el("p", { class: "note", text: "These are animatics: the voice is a temporary computer voice and the dashed outlines mark where real footage goes. Final spots will be shot and edited by our production crew." }));
+
+function select(id, play) {
+  const s = byId[id] || all[0];
+  if (player.dataset.id !== s.id) {
+    player.dataset.id = s.id;
+    player.poster = s.poster;
+    player.src = s.file;
+  }
+  document.getElementById("now-title").textContent = s.title;
+  document.getElementById("now-meta").textContent = s.length + " · " + s.jess;
+  document.getElementById("now-summary").textContent = s.summary;
+  const line = document.getElementById("now-line");
+  line.replaceChildren(el("b", { text: "Jess says" }), document.createTextNode("“" + s.line + "”"));
+  document.querySelectorAll(".spot").forEach(b => {
+    const on = b.dataset.id === s.id;
+    b.setAttribute("aria-current", on ? "true" : "false");
+    const thumb = b.querySelector(".thumb");
+    thumb.querySelector(".playing")?.remove();
+    if (on) thumb.append(el("span", { class: "playing", text: "On screen" }));
+  });
+  if (play) player.play().catch(() => {});
+}
+
+const fromHash = () => location.hash.slice(1).toLowerCase();
+select(fromHash(), false);
+window.addEventListener("hashchange", () => select(fromHash(), true));
+</script>
+</body>
+</html>
